@@ -117,7 +117,7 @@ export const BattleArea = ({ playerPokemon, cpuPokemon }) => {
       </div>
 
       <div className="battle-controls">
-        <div className="waza">
+        <div className="moves">
           <p>技を選択：</p>
           <AttackButton onClick={handleAttack} />
         </div>
