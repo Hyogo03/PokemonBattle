@@ -1,0 +1,72 @@
+.battle-area {
+  width: 100%;
+}
+
+.pokemon-stats {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  min-width: 600px;
+  border: 2px solid #ccc;
+  border-radius: 20px;
+  padding: 10px 20px;
+  margin-bottom: 15px;
+}
+.pokemon-stats img {
+  width: 150px;
+  height: 150px;
+}
+
+.battle-log {
+  border: 1px solid #ccc;
+  padding: 12px;
+  margin: 12px 0;
+  max-height: 300px;
+  overflow-y: auto;
+  background-color: #f9f9f9;
+  border-radius: 4px;
+}
+
+.battle-log p {
+  margin: 4px 0;
+  font-size: 14px;
+  border-bottom: 1px solid #aaa;
+  padding-bottom: 4px;
+  color: #333;
+}
+
+.hpWrapper {
+  align-items: center;
+}
+.hpWrapper h2 {
+  margin-bottom: 5px;
+}
+
+.hpContainer {
+  width: 150px;
+  height: 20px;
+  background-color: #f0f0f0;
+  border: 1px solid #333;
+  border-radius: 20px;
+  overflow: hidden;
+}
+
+.hpBar {
+  height: 100%;
+  border-radius: 20px;
+  background-color: #4caf50;
+  transition: width 0.5s; /* HPの減少をアニメーション */
+  position: relative;
+}
+
+.hpBar p {
+  text-align: center;
+  color: white;
+  font-weight: bold;
+  font-size: 12px;
+  text-shadow: 1px 1px 2px #333;
+}
+
+.waza p {
+  font-weight: bold;
+}
