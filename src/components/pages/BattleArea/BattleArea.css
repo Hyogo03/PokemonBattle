@@ -70,3 +70,24 @@
 .waza p {
   font-weight: bold;
 }
+
+@media screen and (max-width: 428px) {
+  .pokemon-stats {
+    flex-direction: column;
+    align-items: center;
+    min-width: 100%;
+  }
+  .pokemon-stats img {
+    width: 100px;
+    height: 100px;
+  }
+  .battle-log {
+    max-height: 200px;
+  }
+  .hpContainer {
+    width: 100px;
+  }
+  .hpBar {
+    width: 100%;
+  }
+}
