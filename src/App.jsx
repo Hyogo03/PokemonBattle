@@ -11,9 +11,28 @@ import {
 } from "react-router-dom";
 import { Loading } from "./components/pages/Loading/Loading";
 
+const savePokemonToLocalStorage = (player, cpu) => {
+  localStorage.setItem("playerPokemon", JSON.stringify(player));
+  localStorage.setItem("cpuPokemon", JSON.stringify(cpu));
+};
+
+const loadPokemonFromLocalStorage = () => {
+  const player = localStorage.getItem("playerPokemon");
+  const cpu = localStorage.getItem("cpuPokemon");
+
+  if (player && cpu) {
+    return {
+      player: JSON.parse(player),
+      cpu: JSON.parse(cpu),
+    };
+  }
+  return { player: null, cpu: null };
+};
+
 export function App() {
-  const [playerPokemon, setPlayerPokemon] = useState(null);
-  const [cpuPokemon, setCpuPokemon] = useState(null);
+  const initialData = loadPokemonFromLocalStorage();
+  const [playerPokemon, setPlayerPokemon] = useState(initialData.player);
+  const [cpuPokemon, setCpuPokemon] = useState(initialData.cpu);
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
@@ -57,6 +76,7 @@ export function App() {
         // プレイヤーとCPUのデータを一度にステートにセット
         setPlayerPokemon(selectedPokemon);
         setCpuPokemon(cpuData);
+        savePokemonToLocalStorage(selectedPokemon, cpuData);
 
         setTimeout(() => {
           setIsLoading(false);
