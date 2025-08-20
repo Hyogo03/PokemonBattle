@@ -1,0 +1,13 @@
+.backButton {
+  background-color: #4caf50;
+  color: white;
+  font-weight: bold;
+  border-radius: 4px;
+  padding: 8px 12px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.backButton:hover {
+  background-color: #45a049;
+}
