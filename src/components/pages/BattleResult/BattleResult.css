@@ -1,0 +1,23 @@
+.result-container {
+  text-align: center;
+  padding: 2rem;
+}
+.result-title {
+  font-size: 2.5rem;
+  margin-bottom: 1rem;
+}
+
+.result-button {
+  background-color: #646cff;
+  padding: 0.8rem 1.5rem;
+  font-size: 1rem;
+  font-weight: bold;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+@media screen and (max-width: 428px) {
+  .result-title {
+    font-size: 2rem;
+  }
+}
