@@ -10,6 +10,7 @@ import {
   useNavigate,
 } from "react-router-dom";
 import { Loading } from "./components/pages/Loading/Loading";
+import { BattleResult } from "./components/pages/BattleResult/BattleResult";
 
 const savePokemonToLocalStorage = (player, cpu) => {
   localStorage.setItem("playerPokemon", JSON.stringify(player));
@@ -103,16 +104,16 @@ export function App() {
           <Route
             path="/battle"
             element={
-              playerPokemon && cpuPokemon ? (
+              playerPokemon &&
+              cpuPokemon && (
                 <BattleArea
                   playerPokemon={playerPokemon}
                   cpuPokemon={cpuPokemon}
                 />
-              ) : (
-                <></>
               )
             }
           />
+          <Route path="/result" element={<BattleResult />} />
         </Routes>
       </div>
     </Router>
