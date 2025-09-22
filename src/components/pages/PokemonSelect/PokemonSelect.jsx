@@ -42,7 +42,7 @@ export function PokemonSelect({ onSelect }) {
 
   return (
     <div>
-      <h1>ポケモンを選ぼう！</h1>
+      <h1 className="pokemon-title">ポケモンを選ぼう！</h1>
       <div className="pokemon-list">
         {pokemons.map((pokemon) => (
           <div

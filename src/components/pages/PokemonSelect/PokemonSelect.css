@@ -1,3 +1,9 @@
+.pokemon-title {
+  display: block;
+  text-align: center;
+  margin-bottom: 20px;
+}
+
 .pokemon-list {
   display: flex;
   flex-wrap: wrap;
