@@ -34,9 +34,7 @@
   overflow-y: auto;
   font-size: 1rem;
   line-height: 1.4;
-  
 }
-  
 
 .battle-log-message {
   margin-bottom: 8px;
@@ -80,7 +78,7 @@
 
 .hpBar p {
   text-align: center;
-  color: white;
+  color: #fff;
   font-weight: bold;
   font-size: 12px;
   text-shadow: 1px 1px 2px #333;
@@ -102,7 +100,9 @@
   }
   .battle-log {
     font-size: 13px;
-    max-height: 200px;
+    max-height: 130px;
+    line-height: 1.1;
+    padding: 10px 15px;
   }
   .hpContainer {
     width: 100px;
