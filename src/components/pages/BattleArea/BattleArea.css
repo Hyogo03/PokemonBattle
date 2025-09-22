@@ -1,11 +1,16 @@
 .battle-area {
   width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
 }
 
 .pokemon-stats {
   display: flex;
   justify-content: space-between;
   align-items: center;
+  max-width: 800px;
   min-width: 600px;
   border: 2px solid #ccc;
   border-radius: 20px;
@@ -18,21 +23,35 @@
 }
 
 .battle-log {
-  border: 1px solid #ccc;
-  padding: 12px;
-  margin: 12px 0;
-  max-height: 300px;
+  max-width: 600px;
+  max-height: 200px;
+  margin: 20px auto;
+  padding: 15px;
+  background-color: #333;
+  color: #fff;
+  border: 4px solid #555;
+  border-radius: 10px;
   overflow-y: auto;
-  background-color: #f9f9f9;
-  border-radius: 4px;
+  font-size: 1rem;
+  line-height: 1.4;
+  
+}
+  
+
+.battle-log-message {
+  margin-bottom: 8px;
+  animation: log-fade-in 0.5s forwards;
 }
 
-.battle-log p {
-  margin: 4px 0;
-  font-size: 14px;
-  border-bottom: 1px solid #aaa;
-  padding-bottom: 4px;
-  color: #333;
+@keyframes log-fade-in {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 .hpWrapper {
@@ -82,6 +101,7 @@
     height: 100px;
   }
   .battle-log {
+    font-size: 13px;
     max-height: 200px;
   }
   .hpContainer {

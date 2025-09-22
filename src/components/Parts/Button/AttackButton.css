@@ -1,6 +1,5 @@
 .attackButton {
   background-color: #4caf50;
-  color: white;
   border: none;
   padding: 10px 15px;
   text-align: center;
@@ -8,17 +7,23 @@
   display: inline-block;
   font-size: 16px;
   font-weight: bold;
-  margin: 4px 2px;
+  margin: 4px 4px;
   cursor: pointer;
   border-radius: 12px;
   transition: background-color 0.3s;
 }
 
-.attackButton:hover {
-  background-color: #45a049;
-}
-
 .attackButton:disabled {
   background-color: #ccc;
   cursor: not-allowed;
+}
+
+@media screen and (max-width: 428px) {
+  .attackButton {
+    width: 40%;
+    padding: 6px 12px;
+    font-size: 12px;
+    margin: 2px 2px;
+    border-radius: 8px;
+  }
 }

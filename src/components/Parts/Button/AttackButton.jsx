@@ -2,24 +2,30 @@ import React from "react";
 import { useState } from "react";
 import "./AttackButton.css";
 
-export const AttackButton = ({ onClick }) => {
+export const AttackButton = ({ onAttack, onMove }) => {
   const [disabled, setDisabled] = useState(false);
 
-  const handleClick = () => {
+  const handleClick = (move) => {
     setDisabled(true);
-    if (onClick) {
-      onClick();
-    }
-
-    console.log("クリックされました");
+    onAttack(move);
 
     setTimeout(() => {
       setDisabled(false);
     }, 2000);
   };
+
   return (
-    <button onClick={handleClick} disabled={disabled} className="attackButton">
-      こうげき
-    </button>
+    <>
+      {onMove.map((move, i) => (
+        <button
+          key={i}
+          onClick={() => handleClick(move)}
+          disabled={disabled}
+          className="attackButton"
+        >
+          {move}
+        </button>
+      ))}
+    </>
   );
 };
