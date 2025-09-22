@@ -3,12 +3,7 @@ import { PokemonSelect } from "./components/pages/PokemonSelect/PokemonSelect";
 import { BattleArea } from "./components/pages/BattleArea/BattleArea";
 import "./App.css";
 import "../src/ress.css";
-import {
-  BrowserRouter as Router,
-  Routes,
-  Route,
-  useNavigate,
-} from "react-router-dom";
+import { Routes, Route, useNavigate } from "react-router-dom";
 import { Loading } from "./components/pages/Loading/Loading";
 import { BattleResult } from "./components/pages/BattleResult/BattleResult";
 
@@ -31,10 +26,12 @@ const loadPokemonFromLocalStorage = () => {
 };
 
 export function App() {
+  const navigate = useNavigate();
   const initialData = loadPokemonFromLocalStorage();
   const [playerPokemon, setPlayerPokemon] = useState(initialData.player);
   const [cpuPokemon, setCpuPokemon] = useState(initialData.cpu);
   const [isLoading, setIsLoading] = useState(true);
+  const [battleResult, setBattleResult] = useState(null);
 
   useEffect(() => {
     setTimeout(() => {
@@ -43,8 +40,6 @@ export function App() {
   }, []);
 
   const PokemonSelectWrapper = () => {
-    const navigate = useNavigate();
-
     const getPokemonWithJapaneseName = async (pokemonUrl) => {
       // ポケモンの詳細データを取得
       const pokemonRes = await fetch(pokemonUrl);
@@ -93,29 +88,66 @@ export function App() {
     return <PokemonSelect onSelect={handleSelectPokemon} />;
   };
 
+  // ★バトル終了時の処理
+  const handleBattleEnd = (winner) => {
+    setBattleResult(winner);
+    localStorage.setItem("battleResult", winner);
+    navigate("/result");
+  };
+
+  // ★リセット用
+  const handleRestartBattle = () => {
+    localStorage.removeItem("battleResult");
+    localStorage.removeItem("playerPokemon");
+    localStorage.removeItem("cpuPokemon");
+    localStorage.removeItem("playerHp");
+    localStorage.removeItem("cpuHp");
+    setBattleResult(null);
+    setPlayerPokemon(null);
+    setCpuPokemon(null);
+
+    navigate("/");
+    setIsLoading(true);
+    setTimeout(() => {
+      setIsLoading(false);
+    }, 2000);
+  };
+
   return (
-    <Router>
-      <div className="app">
-        <Routes>
-          <Route
-            path="/"
-            element={isLoading ? <Loading /> : <PokemonSelectWrapper />}
-          />
-          <Route
-            path="/battle"
-            element={
-              playerPokemon &&
-              cpuPokemon && (
-                <BattleArea
-                  playerPokemon={playerPokemon}
-                  cpuPokemon={cpuPokemon}
-                />
-              )
-            }
-          />
-          <Route path="/result" element={<BattleResult />} />
-        </Routes>
-      </div>
-    </Router>
+    <div className="app">
+      <Routes>
+        <Route
+          path="/"
+          element={isLoading ? <Loading /> : <PokemonSelectWrapper />}
+        />
+        <Route
+          path="/battle"
+          element={
+            playerPokemon && cpuPokemon ? (
+              <BattleArea
+                playerPokemon={playerPokemon}
+                cpuPokemon={cpuPokemon}
+                onBattleEnd={handleBattleEnd}
+              />
+            ) : (
+              <></>
+            )
+          }
+        />
+        <Route
+          path="/result"
+          element={
+            battleResult ? (
+              <BattleResult
+                winner={battleResult}
+                onRestart={handleRestartBattle}
+              />
+            ) : (
+              <></>
+            )
+          }
+        />
+      </Routes>
+    </div>
   );
 }
